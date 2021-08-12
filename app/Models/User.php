@@ -6,18 +6,22 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
-        'is_admin',
+        'fname',
+        'surname',
+        // 'is_admin',
+        // 'is_active',
     ];
 
     protected $hidden = [
@@ -44,5 +48,10 @@ class User extends Authenticatable
             ]);
         }
         return $this->hasOne(Cart::class)->where('status', Cart::$PENDING)->latestOfMany();
+    }
+
+    public function products() : HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

@@ -13,10 +13,10 @@
     <form action="{{ route('login') }}" method="POST">
         @csrf
         <div class="form-group position-relative has-icon-left mb-4">
-            <input id="email" type="text" class="form-control form-control-xl @error('email') is-invalid @enderror"
-                placeholder="E-Mail Address" name="email" value="{{ old('email') }}" autocomplete="email" autofocus
+            <input id="username" type="text" class="form-control form-control-xl @error('username') is-invalid @enderror"
+                placeholder="Username or E-Mail Address" name="username" value="{{ old('username') }}" autocomplete="username" autofocus
                 required>
-            @error('email')
+            @error('username')
                 <div class="invalid-feedback">
                     <strong>{{ $message }}</strong>
                 </div>

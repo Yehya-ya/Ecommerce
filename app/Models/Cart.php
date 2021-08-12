@@ -7,17 +7,42 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Cart extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     static public $PENDING = 0;
     static public $COMPLETED = 1;
     static public $CANCELED = 2;
     static public $FAILED = 3;
 
-    protected $fillable = ['status'];
+    protected $fillable = [
+        'status',
+    //     'completed_at'
+    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (Cart $model) {
+            $model->generateCode();
+        });
+    }
+
+    private function generateCode()
+    {
+        do {
+            // Make sure it is unique
+            $uuid = Str::uuid();
+            $existing = Cart::where('uuid', $uuid)->first();
+        } while (!empty($existing));
+
+        $this->uuid = $uuid;
+    }
 
     public function user(): BelongsTo
     {
