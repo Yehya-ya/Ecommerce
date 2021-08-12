@@ -11,16 +11,18 @@ class AddColumnsToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->foreignIdFor(User::class)->nullable()->after('id');
-            $table->string('slug', 2083)->after('description');
+            $table->string('slug')->after('description');
             $table->unsignedTinyInteger('cid')->default(USD)->after('price');
-            $table->unsignedTinyInteger('status')->default(ACTIVE)->after('stock');
+            $table->boolean('is_active')->default(true)->after('stock');
+            $table->softDeletes();
         });
     }
 
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['cid', 'slug', 'status', 'user_id']);
+            $table->dropColumn(['cid', 'slug', 'is_active', 'user_id']);
+            $table->dropSoftDeletes();
         });
     }
 }

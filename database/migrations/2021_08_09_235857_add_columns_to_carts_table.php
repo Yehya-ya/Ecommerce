@@ -11,6 +11,7 @@ class AddColumnsToCartsTable extends Migration
         Schema::table('carts', function (Blueprint $table) {
             $table->uuid('uuid')->unique()->after('id');
             $table->timestamp('completed_at')->nullable()->after('status');
+            $table->softDeletes();
         });
     }
 
@@ -19,6 +20,7 @@ class AddColumnsToCartsTable extends Migration
         Schema::table('carts', function (Blueprint $table) {
             $table->dropUnique(['uuid']);
             $table->dropColumn(['completed_at', 'uuid']);
+            $table->dropSoftDeletes();
         });
     }
 }

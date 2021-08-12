@@ -11,6 +11,7 @@ class AddColumnsToSalesTable extends Migration
         Schema::table('cart_product', function (Blueprint $table) {
             $table->uuid('uuid')->unique()->after('id');
             $table->unsignedTinyInteger('cid')->default(USD)->after('unit_price');
+            $table->softDeletes();
         });
     }
 
@@ -19,6 +20,7 @@ class AddColumnsToSalesTable extends Migration
         Schema::table('cart_product', function (Blueprint $table) {
             $table->dropUnique(['uuid']);
             $table->dropColumn(['cid', 'uuid']);
+            $table->dropSoftDeletes();
         });
     }
 }

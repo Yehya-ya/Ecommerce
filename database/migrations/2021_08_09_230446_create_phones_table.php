@@ -16,6 +16,7 @@ class CreatePhonesTable extends Migration
             $table->string('number', 20);
             $table->boolean('is_verified')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

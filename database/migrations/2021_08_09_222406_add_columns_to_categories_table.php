@@ -10,15 +10,17 @@ class AddColumnsToCategoriesTable extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->text('description')->after('title');
-            $table->string('slug', 2083)->after('description');
-            $table->unsignedTinyInteger('status')->default(ACTIVE)->after('slug');
+            $table->string('slug')->after('description');
+            $table->boolean('is_active')->default(true)->after('slug');
+            $table->softDeletes();
         });
     }
 
     public function down()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn(['description', 'slug', 'status']);
+            $table->dropColumn(['description', 'slug', 'is_active']);
+            $table->dropSoftDeletes();
         });
     }
 }
