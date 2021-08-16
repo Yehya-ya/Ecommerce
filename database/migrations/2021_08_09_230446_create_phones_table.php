@@ -11,7 +11,7 @@ class CreatePhonesTable extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('country_code', 5);
             $table->string('number', 20);
             $table->boolean('is_verified')->default(false);

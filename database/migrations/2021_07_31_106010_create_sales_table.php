@@ -12,13 +12,14 @@ class CreateSalesTable extends Migration
     {
         Schema::create('cart_product', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Cart::class);
-            $table->foreignIdFor(Product::class);
+            $table->uuid('uuid');
+            $table->foreignIdFor(Cart::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignIdFor(Product::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('quantity')->default(1);
             $table->unsignedInteger('unit_price');
+            $table->string('cid', 3)->default('USD');
             $table->timestamps();
-
-            $table->unique(['cart_id', 'product_id']);
+            $table->softDeletes();
         });
     }
 
