@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class Pay extends Component
@@ -19,23 +18,21 @@ class Pay extends Component
         if ($this->product) {
             $this->price = $this->product->price;
             $this->count = 1;
-        }else{
+        } else {
             $this->price = 0;
             $this->count = 0;
         }
-
     }
 
-    public function render()
+    public function getFormatedPriceProperty()
     {
-        return view('livewire.pay');
+        return config('currency.symbols.' . auth()->user()->getSetting('currency', 'USD')) . number_format(($this->price * $this->count) / 100, 2);
     }
 
     public function increment()
     {
         if ($this->product && $this->product->stock > $this->count) {
             $this->count++;
-            $this->price = $this->product->price * $this->count;
         }
     }
 
@@ -43,8 +40,11 @@ class Pay extends Component
     {
         if ($this->product && $this->count > 1) {
             $this->count--;
-            $this->price = $this->product->price * $this->count;
-            Log::warning($this->price);
         }
+    }
+
+    public function render()
+    {
+        return view('livewire.pay');
     }
 }

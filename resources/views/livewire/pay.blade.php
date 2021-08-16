@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-center m-2">
-        <h4>${{$price}}</h4>
+        <h4>{{ $this->formated_price }}</h4>
     </div>
-    <input type="hidden" name="quantity" value="{{$count}}">
+    <input type="hidden" name="quantity" value="{{ $count }}">
 </div>

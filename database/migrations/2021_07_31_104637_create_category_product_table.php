@@ -8,26 +8,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCategoryProductTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('category_product', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Category::class);
-            $table->foreignIdFor(Product::class);
-            $table->timestamps();
+            $table->foreignIdFor(Category::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignIdFor(Product::class)->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('category_product');

@@ -33,7 +33,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Page Styles -->
-    @yield('styles')
+    @stack('styles')
 </head>
 
 <body>
