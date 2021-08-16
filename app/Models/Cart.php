@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,18 +13,29 @@ use Illuminate\Support\Str;
 
 class Cart extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes;
 
     static public $PENDING = 0;
     static public $COMPLETED = 1;
     static public $CANCELED = 2;
     static public $FAILED = 3;
 
+    protected $cascadeDeletes = ['sales'];
+
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'status',
-    //     'completed_at'
+        //     'completed_at'
     ];
 
+    // Override
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
+    // Override
     protected static function boot()
     {
         parent::boot();
@@ -54,7 +66,7 @@ class Cart extends Model
         return $this->belongsToMany(Product::class)
             ->using(Sale::class)
             ->as('sale')
-            ->withPivot(['quantity', 'unit_price', 'id'])
+            ->withPivot(['quantity', 'unit_price', 'cid', 'id'])
             ->withTimestamps();
     }
 
@@ -63,16 +75,22 @@ class Cart extends Model
         return $this->hasMany(Sale::class);
     }
 
-    public function getPriceAttribute() : int
+    public function getPriceAttribute(): float
     {
         $sum = 0;
-        foreach ($this->products as $product) {
-            $sum += $product->sale->unit_price * $product->sale->quantity;
+        foreach ($this->sales as $sale) {
+            $sum += $sale->price;
         }
         return $sum;
     }
 
-    public function validate() : bool
+    public function getFormatedPriceAttribute(): string
+    {
+
+        return config('currency.symbols.' . $this->user->getSetting('currency', 'USD')) . number_format($this->price/100, 2);
+    }
+
+    public function validate(): bool
     {
         foreach ($this->products as $product) {
             if ($product->sale->quantity > $product->stock) {
