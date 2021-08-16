@@ -16,7 +16,7 @@
                         </strong>
                         <i class='bi bi-caret-down-fill bi-sub fs-6 text-gray-600'></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                    <ul class="dropdown-menu dropdown-menu-start dropdown-menu-sm-end" aria-labelledby="dropdownMenuButton" style="min-width: 10rem">
                         <li>
                             <h6 class="dropdown-header">Choice your currency</h6>
                         </li>
