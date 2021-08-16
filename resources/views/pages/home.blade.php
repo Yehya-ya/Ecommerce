@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         @foreach ($products as $product)
-            <div class="col-6 col-lg-4 p-1">
+            <div class="col-12 col-lg-4 p-1">
                 <div class="card">
                     <form action="{{ route('cart.update', ['cart' => auth()->user()->cart]) }}" method="POST">
                         @method('PUT')
