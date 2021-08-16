@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Customer;
 
+use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
@@ -11,12 +12,6 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    public function index() : View
-    {
-        $carts = Cart::with('user')->get();
-        return view('pages.cart.index', compact('carts'));
-    }
-
     public function show(Cart $cart) : View
     {
         if (auth()->user()->cart != $cart) {
@@ -48,10 +43,11 @@ class CartController extends Controller
 
         $cart_product = $cart->products()->Where('cart_id', $cart->id)->Where('product_id', $product->id)->first();
         if (!$cart_product) {
-            $cart->products()->attach($product_id, ['quantity' => $quantity, 'unit_price' => $product->price]);
+            $cart->products()->attach($product_id, ['quantity' => $quantity, 'unit_price' => $product->value, 'cid' => $product->cid]);
         }else{
             $cart_product->sale->quantity = $quantity;
-            $cart_product->sale->unit_price = $product->price;
+            $cart_product->sale->unit_price = $product->value;
+            $cart_product->sale->cid = $product->cid;
             $cart_product->sale->save();
         }
 

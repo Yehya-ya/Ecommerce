@@ -64,7 +64,7 @@
                     </li>
 
                     <li class="sidebar-item" id="sales">
-                        <a href="{{route('cart.index')}}" class='sidebar-link'>
+                        <a href="{{route('admin.sale.index')}}" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Sales</span>
                         </a>

@@ -35,10 +35,13 @@
                         @endforeach
                     </ul>
                 </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="{{route('cart.show', ['cart' => auth()->user()->cart])}}">
+                        <i class='bi bi-cart bi-sub fs-4 text-gray-600'></i>
+                    </a>
+                </li>
             </ul>
-            @auth
-                @include('parts.dropdown_profile')
-            @endauth
+            @include('parts.dropdown_profile')
         </div>
     </div>
 </nav>
