@@ -41,7 +41,7 @@ class CurrencyRateJop implements ShouldQueue
                     ];
                 }
             }
-            CurrencyRate::upsert($values,['from', ['to'], ['amount']]);
+            CurrencyRate::upsert($values,['from', 'to'], ['amount']);
         }
     }
 }
