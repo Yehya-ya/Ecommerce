@@ -12,6 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 
+
 class CurrencyRateJop implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -34,10 +35,12 @@ class CurrencyRateJop implements ShouldQueue
                 ->get();
 
             $values = [];
+
             if (is_null($rates)) {
                 Log::error("could not get the currency exchange rate form {$currency} to {$otherCurrencies}");
                 return;
             }
+
 
             foreach ($rates as $key => $rate) {
                 if ($rate = CurrencyRate::getAmountInt($rate)) {
@@ -48,6 +51,7 @@ class CurrencyRateJop implements ShouldQueue
                     ];
                 }
             }
+
             CurrencyRate::upsert($values,['from', ['to'], ['amount']]);
         }
     }

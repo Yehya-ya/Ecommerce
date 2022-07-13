@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="card collapse-icon accordion-icon-rotate mx-5">
+
     <div class="card-header d-flex justify-content-between">
         <h1 class="card-title py-2 m-0">Cart</h1>
         <div>
