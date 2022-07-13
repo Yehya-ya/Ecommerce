@@ -61,6 +61,9 @@
                             by <a href="https://www.linkedin.com/in/yehya-yasser">Yehya Yasser</a>
                         </div>
                     </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="https://www.linkedin.com/in/yehya-yasser">Yehya Yasser</a></p>
+                    </div>
                 </footer>
             </div>
         </div>

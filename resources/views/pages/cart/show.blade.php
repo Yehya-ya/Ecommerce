@@ -3,7 +3,8 @@
 @section('title', 'Cart')
 
 @section('content')
-<div class="card collapse-icon accordion-icon-rotate mx-0 mx-md-5" style="min-width: 300px;">
+<div class="card collapse-icon accordion-icon-rotate mx-5">
+
     <div class="card-header d-flex justify-content-between">
         <h1 class="card-title py-2 m-0">Cart</h1>
         <div>
@@ -37,7 +38,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="card-footer mx-0 mx-md-5">
+        <div class="card-footer mx-5">
             <div class="d-flex justify-content-between">
                 <span class="font-extrabold text-black text-xl mx-4">Totle Price:</span>
                 <span class="font-extrabold text-black text-xl mx-4">{{ $cart->formated_price }}</span>

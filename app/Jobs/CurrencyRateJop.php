@@ -10,6 +10,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+
 
 class CurrencyRateJop implements ShouldQueue
 {
@@ -25,13 +27,21 @@ class CurrencyRateJop implements ShouldQueue
     {
         $currencies = config('currency.currencies');
         foreach ($currencies as $currency) {
+            $otherCurrencies = array_diff($currencies, [$currency]);
             $rates = Currency::rates()
                 ->latest()
-                ->symbols(array_diff($currencies, [$currency]))
+                ->symbols($otherCurrencies)
                 ->base($currency)
                 ->get();
 
             $values = [];
+
+            if (is_null($rates)) {
+                Log::error("could not get the currency exchange rate form {$currency} to {$otherCurrencies}");
+                return;
+            }
+
+
             foreach ($rates as $key => $rate) {
                 if ($rate = CurrencyRate::getAmountInt($rate)) {
                     $values[] = [
@@ -41,7 +51,8 @@ class CurrencyRateJop implements ShouldQueue
                     ];
                 }
             }
-            CurrencyRate::upsert($values,['from', 'to'], ['amount']);
+
+            CurrencyRate::upsert($values,['from', ['to'], ['amount']]);
         }
     }
 }
