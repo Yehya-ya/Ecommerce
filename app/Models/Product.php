@@ -19,8 +19,6 @@ class Product extends Model
 
     protected $cascadeDeletes = ['sales', 'categoryRelations'];
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'title',
         'description',
@@ -29,6 +27,10 @@ class Product extends Model
         'slug',
         'cid',
         'is_active',
+    ];
+
+    protected $casts = [
+        'deleted_at' => 'datetime'
     ];
 
     // Override
