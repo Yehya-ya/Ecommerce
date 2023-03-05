@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Phone extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

@@ -14,12 +14,14 @@ class ProductController extends Controller
     public function index(): View
     {
         $products = Product::with('categories')->get();
+
         return view('pages.admin.product.index', compact('products'));
     }
 
     public function create(): View
     {
         $categories = Category::all();
+
         return view('pages.admin.product.create', compact('categories'));
     }
 
@@ -53,6 +55,7 @@ class ProductController extends Controller
     public function edit(Product $product): View
     {
         $categories = Category::all();
+
         return view('pages.admin.product.edit', compact(['product', 'categories']));
     }
 

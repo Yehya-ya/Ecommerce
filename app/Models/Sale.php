@@ -6,7 +6,6 @@ use App\Services\PriceService;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class Sale extends Pivot
@@ -39,7 +38,7 @@ class Sale extends Pivot
             // Make sure it is unique
             $uuid = Str::uuid();
             $existing = Sale::where('uuid', $uuid)->first();
-        } while (!empty($existing));
+        } while (! empty($existing));
 
         $this->uuid = $uuid;
     }
@@ -51,7 +50,7 @@ class Sale extends Pivot
             $cid = $user->getSetting('currency', 'USD');
         }
 
-        return (new PriceService)->getPrice($this->unit_price * $this->quantity, $this->cid, $cid);
+        return (new PriceService())->getPrice($this->unit_price * $this->quantity, $this->cid, $cid);
     }
 
     public function getFormatedPriceAttribute(): string
@@ -60,7 +59,8 @@ class Sale extends Pivot
         if (auth()->check()) {
             $cid = auth()->user()->getSetting('currency', 'USD');
         }
-        return config('currency.symbols.' . $cid) . number_format($this->price / 100, 2);
+
+        return config('currency.symbols.'.$cid).number_format($this->price / 100, 2);
     }
 
     public function product(): BelongsTo

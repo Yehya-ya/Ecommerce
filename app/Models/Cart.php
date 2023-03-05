@@ -13,12 +13,17 @@ use Illuminate\Support\Str;
 
 class Cart extends Model
 {
-    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
+    use CascadeSoftDeletes;
 
-    static public $PENDING = 0;
-    static public $COMPLETED = 1;
-    static public $CANCELED = 2;
-    static public $FAILED = 3;
+    public static $PENDING = 0;
+
+    public static $COMPLETED = 1;
+
+    public static $CANCELED = 2;
+
+    public static $FAILED = 3;
 
     protected $cascadeDeletes = ['sales'];
 
@@ -53,7 +58,7 @@ class Cart extends Model
             // Make sure it is unique
             $uuid = Str::uuid();
             $existing = Cart::where('uuid', $uuid)->first();
-        } while (!empty($existing));
+        } while (! empty($existing));
 
         $this->uuid = $uuid;
     }
@@ -83,13 +88,13 @@ class Cart extends Model
         foreach ($this->sales as $sale) {
             $sum += $sale->price;
         }
+
         return $sum;
     }
 
     public function getFormatedPriceAttribute(): string
     {
-
-        return config('currency.symbols.' . $this->user->getSetting('currency', 'USD')) . number_format($this->price/100, 2);
+        return config('currency.symbols.'.$this->user->getSetting('currency', 'USD')).number_format($this->price / 100, 2);
     }
 
     public function validate(): bool
@@ -99,10 +104,11 @@ class Cart extends Model
                 return false;
             }
         }
+
         return true;
     }
 
-    public function pay() : bool
+    public function pay(): bool
     {
         if ($this->validate()) {
             foreach ($this->sales as $sale) {
@@ -110,14 +116,16 @@ class Cart extends Model
             }
             $this->status = Cart::$COMPLETED;
             $this->save();
+
             return true;
         }
         $this->status = Cart::$FAILED;
         $this->save();
+
         return false;
     }
 
-    public function cancel() : void
+    public function cancel(): void
     {
         $this->status = Cart::$CANCELED;
         $this->save();

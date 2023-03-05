@@ -10,16 +10,15 @@ class AdminCheck
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
-        if (!$user->is_admin) {
+        if (! $user->is_admin) {
             abort(401);
         }
+
         return $next($request);
     }
 }

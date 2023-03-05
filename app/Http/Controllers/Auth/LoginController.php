@@ -22,8 +22,10 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         $fieldType = filter_var($request->input($this->username()), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
         return $this->guard()->attempt(
-            [$fieldType => $request->input('username'), 'password' => $request->input('password')], $request->filled('remember')
+            [$fieldType => $request->input('username'), 'password' => $request->input('password')],
+            $request->filled('remember')
         );
     }
 

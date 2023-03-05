@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
+    use CascadeSoftDeletes;
 
     protected $cascadeDeletes = ['sales', 'categoryRelations'];
 
@@ -30,7 +31,7 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'deleted_at' => 'datetime'
+        'deleted_at' => 'datetime',
     ];
 
     // Override
@@ -44,8 +45,8 @@ class Product extends Model
         $slug = Str::slug($title, '-');
         $existing = Product::where('slug', $slug)->whereNotIn('id', [$id])->first();
         $i = 2;
-        while (!empty($existing)) {
-            $slug = Str::slug($title . ' ' . $i, '-');
+        while (! empty($existing)) {
+            $slug = Str::slug($title.' '.$i, '-');
             $existing = Product::where('slug', $slug)->whereNotIn('id', [$id])->first();
             $i++;
         }
@@ -60,7 +61,7 @@ class Product extends Model
             $cid = $user->getSetting('currency', 'USD');
         }
 
-        return (new PriceService)->getPrice($this->value, $this->cid, $cid);
+        return (new PriceService())->getPrice($this->value, $this->cid, $cid);
     }
 
     public function getFormatedPriceAttribute()
@@ -69,7 +70,8 @@ class Product extends Model
         if (auth()->check()) {
             $cid = auth()->user()->getSetting('currency', 'USD');
         }
-        return config('currency.symbols.' . $cid) . number_format($this->price / 100, 2);
+
+        return config('currency.symbols.'.$cid).number_format($this->price / 100, 2);
     }
 
     public function user(): BelongsTo

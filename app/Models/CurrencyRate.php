@@ -9,7 +9,7 @@ class CurrencyRate extends Model
 {
     use HasFactory;
 
-    protected $fillable =[
+    protected $fillable = [
         'from',
         'to',
         'amount',
@@ -17,7 +17,7 @@ class CurrencyRate extends Model
 
     public static function getAmountInt($amount)
     {
-        if (!is_numeric($amount)) {
+        if (! is_numeric($amount)) {
             return null;
         }
 

@@ -16,6 +16,7 @@ class UserController extends Controller
     public function index(): View
     {
         $users = User::all();
+
         return view('pages.admin.user.index', compact('users'));
     }
 
@@ -74,13 +75,13 @@ class UserController extends Controller
             ]);
         }
 
-
         return redirect(route('admin.user.index'));
     }
 
     public function destroy(Request $request, User $user): RedirectResponse
     {
         $user->delete();
+
         return redirect(route('admin.user.index'));
     }
 
@@ -94,11 +95,9 @@ class UserController extends Controller
             return 0;
         }
 
-
         $user->update([
             'is_active' => $request->input('value') == 'true',
         ]);
-
 
         return 1;
     }

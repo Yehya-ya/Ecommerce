@@ -13,14 +13,15 @@ class ProfileController extends Controller
     public function choiceCurrency(Request $request, User $user): RedirectResponse
     {
         $cid = $request->validate([
-            'cid' => ['required', 'string', Rule::in(config('currency.currencies'))]
+            'cid' => ['required', 'string', Rule::in(config('currency.currencies'))],
         ])['cid'];
 
-        if ($user != auth()->user()){
+        if ($user != auth()->user()) {
             return back();
         }
 
         $user->setSetting('currency', $cid);
+
         return back();
     }
 }

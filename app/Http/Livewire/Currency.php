@@ -7,8 +7,11 @@ use Livewire\Component;
 class Currency extends Component
 {
     public $symbol;
+
     public $cid;
+
     public $price;
+
     public $decimal;
 
     public function mount($price = null)
@@ -20,7 +23,7 @@ class Currency extends Component
             $this->price = '';
             $this->decimal = '';
         }
-        $this->symbol = "$";
+        $this->symbol = '$';
         $this->cid = 'USD';
     }
 

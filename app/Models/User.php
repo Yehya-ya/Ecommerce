@@ -15,7 +15,11 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes, CascadeSoftDeletes, HasSettings;
+    use HasFactory;
+    use Notifiable;
+    use SoftDeletes;
+    use CascadeSoftDeletes;
+    use HasSettings;
 
     protected array $cascadeDeletes = ['carts', 'products', 'phones'];
 
@@ -43,7 +47,7 @@ class User extends Authenticatable
 
     public function getFullNameAttribute()
     {
-        return Str::title($this->fname . ' ' . $this->surname);
+        return Str::title($this->fname.' '.$this->surname);
     }
 
     public function carts(): HasMany
@@ -54,11 +58,12 @@ class User extends Authenticatable
     public function cart(): HasOne
     {
         $cart = Cart::where('user_id', $this->id)->where('status', Cart::$PENDING)->first();
-        if (!$cart) {
+        if (! $cart) {
             $this->carts()->create([
                 'status' => Cart::$PENDING,
             ]);
         }
+
         return $this->hasOne(Cart::class)->where('status', Cart::$PENDING)->latestOfMany();
     }
 

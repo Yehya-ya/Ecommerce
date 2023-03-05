@@ -8,7 +8,9 @@ use Livewire\Component;
 class Pay extends Component
 {
     public $product;
+
     public $count;
+
     public $price;
 
     public function mount($product_id)
@@ -26,7 +28,7 @@ class Pay extends Component
 
     public function getFormatedPriceProperty()
     {
-        return config('currency.symbols.' . auth()->user()->getSetting('currency', 'USD')) . number_format(($this->price * $this->count) / 100, 2);
+        return config('currency.symbols.'.auth()->user()->getSetting('currency', 'USD')).number_format(($this->price * $this->count) / 100, 2);
     }
 
     public function increment()

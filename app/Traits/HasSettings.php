@@ -40,7 +40,6 @@ trait HasSettings
             $setting->save();
         }
 
-
         return json_decode($setting->value);
     }
 }

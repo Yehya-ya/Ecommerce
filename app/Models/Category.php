@@ -12,7 +12,9 @@ use Illuminate\Support\Str;
 
 class Category extends Model
 {
-    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
+    use CascadeSoftDeletes;
 
     protected $cascadeDeletes = ['productRelations'];
 
@@ -38,8 +40,8 @@ class Category extends Model
         $slug = Str::slug($title, '-');
         $existing = Category::where('slug', $slug)->whereNotIn('id', [$id])->first();
         $i = 2;
-        while (!empty($existing)) {
-            $slug = Str::slug($title . ' ' . $i, '-');
+        while (! empty($existing)) {
+            $slug = Str::slug($title.' '.$i, '-');
             $existing = Category::where('slug', $slug)->whereNotIn('id', [$id])->first();
             $i++;
         }
