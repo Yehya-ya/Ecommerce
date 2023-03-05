@@ -16,13 +16,15 @@ class Category extends Model
 
     protected $cascadeDeletes = ['productRelations'];
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'title',
         'description',
         'slug',
         //     'is_active',
+    ];
+
+    protected $casts = [
+        'deleted_at' => 'datetime',
     ];
 
     // Override

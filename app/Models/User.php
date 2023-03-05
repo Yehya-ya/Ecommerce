@@ -19,8 +19,6 @@ class User extends Authenticatable
 
     protected array $cascadeDeletes = ['carts', 'products', 'phones'];
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'username',
         'email',
@@ -40,6 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
         'is_active' => 'boolean',
+        'deleted_at' => 'datetime',
     ];
 
     public function getFullNameAttribute()
