@@ -6,9 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSalesTable extends Migration
+new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('cart_product', function (Blueprint $table) {
             $table->id();
@@ -23,8 +23,8 @@ class CreateSalesTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('cart_product');
     }
-}
+};

@@ -22,11 +22,13 @@ class Cart extends Model
 
     protected $cascadeDeletes = ['sales'];
 
-    protected $dates = ['deleted_at'];
-
     protected $fillable = [
         'status',
         //     'completed_at'
+    ];
+
+    protected $casts = [
+        'deleted_at' => 'datetime',
     ];
 
     // Override
