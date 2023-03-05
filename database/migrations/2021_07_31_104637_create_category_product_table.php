@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryProductTable extends Migration
+new class extends Migration
 {
     public function up()
     {
@@ -22,4 +22,4 @@ class CreateCategoryProductTable extends Migration
     {
         Schema::dropIfExists('category_product');
     }
-}
+};
