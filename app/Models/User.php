@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasSettings;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -17,7 +17,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes, CascadeSoftDeletes, HasSettings;
 
-    protected $cascadeDeletes = ['carts', 'products', 'phones'];
+    protected array $cascadeDeletes = ['carts', 'products', 'phones'];
 
     protected $dates = ['deleted_at'];
 
