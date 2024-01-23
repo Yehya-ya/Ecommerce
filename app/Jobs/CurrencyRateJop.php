@@ -39,8 +39,7 @@ class CurrencyRateJop implements ShouldQueue
 
             if (is_null($rates)) {
                 Log::error("could not get the currency exchange rate form {$currency} to " . implode(', ', $otherCurrencies));
-
-                return;
+                continue;
             }
 
             foreach ($rates as $key => $rate) {
