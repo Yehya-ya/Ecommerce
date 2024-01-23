@@ -9,7 +9,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 
 class CurrencyRateJop implements ShouldQueue
@@ -39,7 +38,7 @@ class CurrencyRateJop implements ShouldQueue
             $values = [];
 
             if (is_null($rates)) {
-                Log::error("could not get the currency exchange rate form {$currency} to " . Arr::implode(', ', $otherCurrencies));
+                Log::error("could not get the currency exchange rate form {$currency} to " . implode(', ', $otherCurrencies));
 
                 return;
             }
