@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\CurrencyRate;
-use Illuminate\Support\Facades\Log;
 
 class PriceService
 {
