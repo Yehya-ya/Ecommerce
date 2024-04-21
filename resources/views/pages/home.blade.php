@@ -2,10 +2,6 @@
 
 @section('title', 'Home')
 
-@push('styles')
-    @livewireStyles
-@endpush
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -22,7 +18,7 @@
                                     {{ $product->description }}
                                 </p>
                             </div>
-                            <img class="img-fluid w-100" src="{{ asset('assets/images/samples/banana.jpg') }}"
+                            <img class="img-fluid w-100" src="{{ asset('assets/static/images/samples/banana.jpg') }}"
                                 alt="Card image cap">
                             @livewire('pay', ['product_id' => $product->id])
                         </div>
@@ -37,7 +33,3 @@
     </div>
 </div>
 @endsection
-
-@push('scripts')
-@livewireScripts
-@endpush

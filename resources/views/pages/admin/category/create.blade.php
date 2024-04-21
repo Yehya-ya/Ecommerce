@@ -1,14 +1,7 @@
 @extends('layouts.app_layout')
 @section('title', 'Add Category')
 
-@push('styles')
-    @livewireStyles()
-@endpush
-
 @section('content')
-@php
-use App\Models\Category;
-@endphp
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">Add Category</h4>
@@ -50,6 +43,3 @@ use App\Models\Category;
     </div>
 </div>
 @endsection
-@push('scripts')
-@livewireScripts()
-@endpush

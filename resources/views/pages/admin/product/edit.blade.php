@@ -1,10 +1,6 @@
 @extends('layouts.app_layout')
 @section('title', 'Edit Product')
 
-@push('styles')
-    @livewireStyles()
-@endpush
-
 @section('content')
 @php
 use App\Models\Product;
@@ -96,6 +92,3 @@ use App\Models\Product;
 </div>
 @endsection
 
-@push('scripts')
-@livewireScripts()
-@endpush

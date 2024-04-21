@@ -10,8 +10,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown me-3">
-                    <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                        <strong>
+                    <a class="nav-link mt-2" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong class="text-gray-600">
                             {{ config('currency.symbols.' . auth()->user()->getSetting('currency', 'USD')) }}
                         </strong>
                         <i class='bi bi-caret-down-fill bi-sub fs-6 text-gray-600'></i>

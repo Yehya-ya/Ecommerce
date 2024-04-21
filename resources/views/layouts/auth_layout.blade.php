@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Title -->
-    <title>{{ config('app.name', 'MyWebsite') }} - @yield('title')</title>
+    <title>{{ config('app.name') }} - @yield('title')</title>
 
     <!-- Global Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,17 +26,17 @@
     @yield('fonts')
 
     <!-- Global Styles -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/pages/auth.css') }}">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/compiled/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/compiled/css/app-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/compiled/css/auth.css') }}">
+
 
     <!-- Page Styles -->
     @stack('styles')
 </head>
 
 <body>
+    <script src="{{ asset('assets/static/js/initTheme.js') }}"></script>
     <div id="auth">
         <div class="row h-100">
             <div class="col-lg-5 col-12">

@@ -5,7 +5,7 @@
 
 @section('content_left')
     <div class="auth-logo">
-        <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="Logo"></a>
+        <a href="{{ route('home') }}"><img src="{{ asset('assets/static/images/logo/logo.svg') }}" alt="Logo"></a>
     </div>
     <h1 class="auth-title">Log in.</h1>
     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>

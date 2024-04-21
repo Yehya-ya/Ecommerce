@@ -1,18 +1,7 @@
 @extends('layouts.app_layout')
 @section('title', 'Add Product')
 
-@section('header-scripts')
-
-@endsection
-
-@push('styles')
-@livewireStyles()
-@endpush
-
 @section('content')
-@php
-use App\Models\Product;
-@endphp
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">Add Product</h4>
@@ -97,7 +86,3 @@ use App\Models\Product;
     </div>
 </div>
 @endsection
-
-@push('scripts')
-@livewireScripts()
-@endpush
