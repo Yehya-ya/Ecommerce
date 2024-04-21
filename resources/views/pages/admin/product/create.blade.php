@@ -100,10 +100,4 @@ use App\Models\Product;
 
 @push('scripts')
 @livewireScripts()
-<script>
-    var element = document.getElementById('product');
-    element.className += " active";
-    element.lastElementChild.className += " active";
-    document.getElementById('product_create').className += " active";
-</script>
 @endpush

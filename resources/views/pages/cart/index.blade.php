@@ -66,9 +66,3 @@ use App\Models\Cart;
 </div>
 @endsection
 
-@push('scripts')
-<script>
-    var element = document.getElementById('sales');
-    element.className += " active";
-</script>
-@endpush

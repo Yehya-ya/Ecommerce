@@ -40,8 +40,4 @@
 
 @push('scripts')
 @livewireScripts
-<script>
-    var element = document.getElementById('home');
-    element.className += " active";
-</script>
 @endpush

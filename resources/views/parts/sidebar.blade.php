@@ -18,52 +18,52 @@
 
                     <li class="sidebar-title">Dashboard</li>
 
-                    <li class="sidebar-item  has-sub" id="category">
+                    <li class="sidebar-item has-sub {{ request()->routeIs('admin.category.*') ? 'active' : '' }}">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Category</span>
                         </a>
-                        <ul class="submenu">
-                            <li class="submenu-item" id="category_create">
+                        <ul class="submenu {{ request()->routeIs('admin.category.*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->routeIs('admin.category.create') ? 'active' : '' }}">
                                 <a href="{{ route('admin.category.create') }}">Add</a>
                             </li>
-                            <li class="submenu-item" id="category_index">
+                            <li class="submenu-item {{ request()->routeIs('admin.category.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.category.index') }}">Categories</a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="sidebar-item  has-sub" id="product">
+                    <li class="sidebar-item has-sub {{ request()->routeIs('admin.product.*') ? 'active' : '' }}">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Product</span>
                         </a>
-                        <ul class="submenu">
-                            <li class="submenu-item" id="product_create">
+                        <ul class="submenu {{ request()->routeIs('admin.product.*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->routeIs('admin.product.create') ? 'active' : '' }}">
                                 <a href="{{ route('admin.product.create') }}">Add</a>
                             </li>
-                            <li class="submenu-item" id="product_index">
+                            <li class="submenu-item {{ request()->routeIs('admin.product.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.product.index') }}">Products</a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="sidebar-item  has-sub" id="user">
-                        <a href="#" class='sidebar-link'>
+                    <li class="sidebar-item has-sub {{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
+                        <a href="#" class="sidebar-link">
                             <i class="bi bi-stack"></i>
                             <span>User</span>
                         </a>
-                        <ul class="submenu">
-                            <li class="submenu-item" id="user_create">
+                        <ul class="submenu {{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
+                            <li class="submenu-item {{ request()->routeIs('admin.user.create') ? 'active' : '' }}">
                                 <a href="{{ route('admin.user.create') }}">Add</a>
                             </li>
-                            <li class="submenu-item" id="user_index">
+                            <li class="submenu-item {{ request()->routeIs('admin.user.index') ? 'active' : '' }}">
                                 <a href="{{ route('admin.user.index') }}">Users</a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="sidebar-item" id="sales">
+                    <li class="sidebar-item {{ request()->routeIs('admin.sale.index') ? 'active' : '' }}">
                         <a href="{{route('admin.sale.index')}}" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
                             <span>Sales</span>
@@ -73,7 +73,7 @@
 
                 {{-- User --}}
                 <li class="sidebar-title">Menu</li>
-                <li class="sidebar-item" id="home">
+                <li class="sidebar-item {{ request()->routeIs('home') ? 'active' : '' }}">
                     <a href="{{route('home')}}" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Market</span>

@@ -51,11 +51,3 @@
     </div>
 </div>
 @endsection
-@push('scripts')
-<script>
-    var element = document.getElementById('category');
-    element.className += " active";
-    element.lastElementChild.className += " active";
-    document.getElementById('category_index').className += " active";
-</script>
-@endpush

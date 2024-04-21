@@ -52,10 +52,4 @@ use App\Models\Category;
 @endsection
 @push('scripts')
 @livewireScripts()
-<script>
-    var element = document.getElementById('category');
-    element.className += " active";
-    element.lastElementChild.className += " active";
-    document.getElementById('category_create').className += " active";
-</script>
 @endpush

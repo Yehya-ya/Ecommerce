@@ -60,11 +60,3 @@
     </div>
 </div>
 @endsection
-@push('scripts')
-<script>
-    var element = document.getElementById('product');
-    element.className += " active";
-    element.lastElementChild.className += " active";
-    document.getElementById('product_index').className += " active";
-</script>
-@endpush

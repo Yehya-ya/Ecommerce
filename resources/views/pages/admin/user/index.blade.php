@@ -80,10 +80,4 @@
             });
     }
 </script>
-<script>
-    var element = document.getElementById('user');
-    element.className += " active";
-    element.lastElementChild.className += " active";
-    document.getElementById('user_index').className += " active";
-</script>
 @endpush

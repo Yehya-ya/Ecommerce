@@ -101,11 +101,3 @@
     </div>
 </div>
 @endsection
-@push('scripts')
-<script>
-    var element = document.getElementById('user');
-    element.className += " active";
-    element.lastElementChild.className += " active";
-    document.getElementById('user_create').className += " active";
-</script>
-@endpush
