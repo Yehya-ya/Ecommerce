@@ -10,7 +10,7 @@
             </li>
         @endforeach
     </ul>
-    <input type="hidden" type="number" name="cid" wire:model="cid">
+    <input type="hidden" type="number" name="cid" wire:model.live="cid">
     <input type="number" id="value" class="form-control @error('value') is-invalid @enderror" name="value"
         placeholder="Price" value="{{ $price }}" min="0" required>
     <span class="input-group-text">.</span>
