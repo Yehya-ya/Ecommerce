@@ -2,6 +2,12 @@
 <br>
 
 ----------
+# Demo
+[https://ecommerce.yehya.dev/login](https://ecommerce.yehya.dev/login)
+
+Username: Admin
+
+password: admin
 
 # Getting started
 
