@@ -13,9 +13,9 @@ use Illuminate\Support\Str;
 
 class Cart extends Model
 {
+    use CascadeSoftDeletes;
     use HasFactory;
     use SoftDeletes;
-    use CascadeSoftDeletes;
 
     public static $PENDING = 0;
 
@@ -65,7 +65,7 @@ class Cart extends Model
 
     public function user(): BelongsTo
     {
-        return  $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function products(): BelongsToMany

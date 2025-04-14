@@ -12,9 +12,9 @@ use Illuminate\Support\Str;
 
 class Category extends Model
 {
+    use CascadeSoftDeletes;
     use HasFactory;
     use SoftDeletes;
-    use CascadeSoftDeletes;
 
     protected $cascadeDeletes = ['productRelations'];
 

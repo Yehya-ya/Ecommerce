@@ -1,6 +1,6 @@
 <?php
 
-return  [
+return [
     'currencies' => [
         'USD',
         'EUR',

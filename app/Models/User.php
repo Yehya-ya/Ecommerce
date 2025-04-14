@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Traits\HasSettings;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
-//use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -15,11 +15,11 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
+    use CascadeSoftDeletes;
     use HasFactory;
+    use HasSettings;
     use Notifiable;
     use SoftDeletes;
-    use CascadeSoftDeletes;
-    use HasSettings;
 
     protected array $cascadeDeletes = ['carts', 'products', 'phones'];
 
@@ -38,12 +38,16 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'is_admin' => 'boolean',
-        'is_active' => 'boolean',
-        'deleted_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'is_admin' => 'boolean',
+            'is_active' => 'boolean',
+            'deleted_at' => 'datetime',
+        ];
+    }
 
     public function getFullNameAttribute()
     {

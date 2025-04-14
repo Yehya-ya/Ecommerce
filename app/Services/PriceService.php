@@ -13,6 +13,6 @@ class PriceService
             return $amount;
         }
 
-        return  $currency_rate->getAmount($amount);
+        return $currency_rate->getAmount($amount);
     }
 }

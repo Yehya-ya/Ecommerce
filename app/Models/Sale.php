@@ -50,7 +50,7 @@ class Sale extends Pivot
             $cid = $user->getSetting('currency', 'USD');
         }
 
-        return (new PriceService())->getPrice($this->unit_price * $this->quantity, $this->cid, $cid);
+        return (new PriceService)->getPrice($this->unit_price * $this->quantity, $this->cid, $cid);
     }
 
     public function getFormatedPriceAttribute(): string

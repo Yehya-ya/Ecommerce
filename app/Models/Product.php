@@ -14,9 +14,9 @@ use Illuminate\Support\Str;
 
 class Product extends Model
 {
+    use CascadeSoftDeletes;
     use HasFactory;
     use SoftDeletes;
-    use CascadeSoftDeletes;
 
     protected $cascadeDeletes = ['sales', 'categoryRelations'];
 
@@ -61,7 +61,7 @@ class Product extends Model
             $cid = $user->getSetting('currency', 'USD');
         }
 
-        return (new PriceService())->getPrice($this->value, $this->cid, $cid);
+        return (new PriceService)->getPrice($this->value, $this->cid, $cid);
     }
 
     public function getFormatedPriceAttribute()
